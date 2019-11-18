@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 15:20:21 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/11/18 16:18:31 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/11/18 16:34:04 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,12 +143,12 @@ char	**ft_solution(char **tetris, char **solution, int size, int grid)//size of 
 				(solution[grid][j + (coordinates.c - coordinates.a)] == '.') &&
 				(solution[grid][j + (coordinates.d - coordinates.a)] == '.')))
 				{
-					printf("fill letter\n");
+					//printf("fill letter\n");
 					solution[grid][j] = letter;
 					solution[grid][j + (coordinates.b - coordinates.a)] = letter;
 					solution[grid][j + (coordinates.c - coordinates.a)] = letter;
 					solution[grid][j + (coordinates.d - coordinates.a)] = letter;
-					printf("solution[0]: %s\n", solution[0]);
+					//printf("solution[0]: %s\n", solution[0]);
 					//printf("check return: %d\n", check_neighbours(solution, i, j, letter));
 					if (letter_neighbours(solution[grid], letter, size) < 0)
 					{
@@ -161,7 +161,10 @@ char	**ft_solution(char **tetris, char **solution, int size, int grid)//size of 
 				}
 				//printf("down below\n");
 			}
-			index = -1;
+			//Om den inte hittade en plats,
+			//call function again with bigger grid and size
+
+			/*index = -1;
 			while (solution[grid][++index])
 			{
 				if (solution[grid][index] == letter)
@@ -174,7 +177,7 @@ char	**ft_solution(char **tetris, char **solution, int size, int grid)//size of 
 					break ;
 					//ft_solution(tetris, solution, size, grid);
 				}
-			}
+			}*/
 			//printf("A done\n");
 			letter++;
 		}

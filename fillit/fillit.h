@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 13:31:04 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/11/18 15:35:56 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/11/19 12:58:41 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int				get_next_tetrimino(const int fd, char **line);
 
 void			ft_coordinates(char *tetrimino, t_coordinates *coordinates);
 
-char			**ft_solution(char **tetris, char **solution, int size, int grid);
+int				ft_solution(char ***tetris, char **solution, int size, int grid);
 
 void			print_tetris(char **tetris);
 

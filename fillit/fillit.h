@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 13:31:04 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/11/19 12:58:41 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/11/29 17:06:18 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,64 @@
 
 # include "../libft/libft.h"
 # include <fcntl.h>
-# include <stdio.h>
+# include <stdio.h>//remove this when done
 
-# ifndef T_COORDINATES
-#  define T_COORDINATES
-
-typedef	struct	s_coordinates
+typedef struct	s_map
 {
-	int			a;
-	int			b;
-	int			c;
-	int			d;
-}				t_coordinates;
+	char		**solution;
+	int			size;
+}				t_map;
 
-# endif
+typedef struct	s_coord//remove this??
+{
+	int			x;
+	int			y;
+}				t_coord;
 
-void			split_tetriminos(char **tetris, char *input);
+typedef struct	s_tetris
+{
+	char		**tetris;
+	char		***array;
+	int			x;
+	int			y;
+}				t_tetris;
 
-void			*ft_memset_newline(void *b, int c, size_t len);
+void			place_block(t_map *map, t_tetris *block, int t, int path);//not done yet
 
-int				get_next_tetrimino(const int fd, char **line);
+int				check_overlap(t_map *map, t_tetris *block, int t);//not done yet
 
-void			ft_coordinates(char *tetrimino, t_coordinates *coordinates);
+int				inside_solution_y(t_map *map, t_tetris *block, int t, int size);//not done yet
 
-int				ft_solution(char ***tetris, char **solution, int size, int grid);
+int				inside_solution_x(t_map *map, t_tetris *block, int t, int size);//not done yet
 
-void			print_tetris(char **tetris);
+int				fill_array(t_tetris *block);
 
-int				check_neighbours(char **tetris, int x, int y, int letter);
+void			do_stack_left(char *tetrimino, int y, int *temp);
 
-int				validate_character(char **tetris, int x);
+void			check_one(char *tetrimino, int y, int *temp);
 
-int				validate_tetriminos(char **tetris);
+void			check_two(char *tetrimino, int y, int *temp);
 
-int				save_tetriminos(char **tetris, char *line, int fd, char **input);
+void			check_three(char *tetrimino, int y, int *temp);
 
-void			change_tetrimino(char **tetris);
+void			stack_tetrimino(t_tetris *block);
+
+void			free_map(t_map *map, int size);
+
+void			print_map(t_map *map, int size);
+
+t_map			*create_map(int size);
+
+int				solver(t_tetris *block);
+
+void			print_array(t_tetris *block);//remove this when done
+
+void			print_tetris(t_tetris *block);//remove this when done
+
+int				validate_tetriminos(t_tetris *block);
+
+int				save_input(char *av, t_tetris *block);
+
+int				ft_error(void);
 
 #endif

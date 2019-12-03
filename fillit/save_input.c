@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 11:55:21 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/11/29 16:13:42 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/03 18:10:57 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		get_input(const int fd, char **input)
 		current[x] = '\0';
 		*input = ft_strdup(current);
 	}
-	if (x < 20 || !(ft_strlen(*input) >= 20))
+	if (x < 20 || !(ft_strlen(*input) >= 20) || ((ft_strlen(*input) + 1) % 21 != 0))
 		return (-1);
 	else if (input == NULL)
 		return (-1);
@@ -84,7 +84,7 @@ int		save_input(char *av, t_tetris *block)
 	int		fd;
 	char	*input;
 
-	if (!(block->tetris = (char **)malloc(sizeof(char *) * 26)))
+	if (!(block->tetris = (char **)malloc(sizeof(char *) * 27)))
 		return (-1);
 	if ((fd = open(av, O_RDONLY)) < 0)
 		return (-1);
@@ -97,7 +97,7 @@ int		save_input(char *av, t_tetris *block)
 		return (-1);
 	stack_tetrimino(block);
 	change_tetrimino(block);
-	if (!(block->array = (char ***)malloc(sizeof(char **) * 26)))
+	if (!(block->array = (char ***)malloc(sizeof(char **) * 27)))
 		return (-1);
 	if (fill_array(block) < 0)
 		return (-1);

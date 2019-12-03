@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:32:58 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/11/29 15:22:55 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/03 16:36:08 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	amount_left(char *tetrimino, int y, int *temp)
 {
-	int	i;
-	int	count;
-
 	if (*temp == 3 || *temp == 2 || *temp == 1)
 	{
 		do_stack_left(tetrimino, y, temp);

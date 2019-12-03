@@ -6,39 +6,42 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:22:42 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/11/29 17:12:21 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/03 18:10:44 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	solve_solution(t_map *map, t_tetris *block, int size)
+int	solve_solution(t_map *map, t_tetris *block, int size, int t)
 {
-	static int	t;
-	system("clear");
-	print_map(map, size);
+	/*system("clear");
+	print_map(map, map->size);
 	usleep(10000);
+	system("clear");*/
+	int	x;
+	int	y;
 
-	block->x = 0;
-	block->y = 0;
-	t = 0;
-	while (inside_solution_y(map, block, t, size))
+	y = 0;
+	if (!block->array[t])
+		return (1);
+	while (map->solution[y])
 	{
-		while (inside_solution_x(map, block, t, size))
-		{
-			if (!check_overlap(map, block, t))
+		x = -1;
+		while (map->solution[y][++x])
+			if (map->solution[y][x] == '.')
 			{
-				place_block(map, block, t, 'p');
-				if (solve_solution(map, block, size))
-					return (1);
-				else
-					place_block(map, block, t, 'd');
+				block->x = x;
+				block->y = y;
+				if (check_overlap2(map, block, t))
+				{
+					place_block(map, block, t, 'p');
+					if (solve_solution(map, block, size, ++t))
+						return (1);
+					else
+						place_block(map, block, --t, 'd');
+				}
 			}
-			block->x++;
-		}
-		t++;
-		block->x = 0;
-		block->y++;
+		y++;
 	}
 	return (0);
 }
@@ -53,7 +56,7 @@ int	amount_tetriminos(t_tetris *block)
 	return (x);
 }
 
-int	min_map(int	hashtags)
+int	min_map(int hashtags)
 {
 	int	size;
 
@@ -67,18 +70,23 @@ int	solver(t_tetris *block)
 {
 	t_map	*map;
 	int		size;
+	int		t;
 
+	if (!(map = (t_map *)malloc(sizeof(t_map))))
+		return (-1);
 	size = min_map(amount_tetriminos(block) * 4);
-	//printf("size done\n");
-	map = create_map(size);
-	printf("map created\n");
-	while (solve_solution(map, block, size) < 0)
+	if (!(create_map(map, size)))
+		return (-1);
+	map->size = size;
+	t = 0;
+	while (!solve_solution(map, block, map->size, t))
 	{
-		free_map(map, size);
-		size++;
-		map = create_map(size);
+		free_map(map, map->size);
+		map->size++;
+		create_map(map, map->size);
+		t = 0;
 	}
-	//print_map(map, size);
-	free_map(map, size);
+	print_map(map, map->size);
+	free_map(map, map->size);
 	return (1);
 }

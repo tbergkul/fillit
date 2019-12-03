@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:34:06 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/11/29 13:51:54 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/03 18:10:56 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	validate_tetriminos(t_tetris *block)
 			if (block->tetris[x][y] == letter)
 				i = i + (check_neighbours(block->tetris[x], y, letter));
 		}
-		if ((i != 6 || i != 8) && counter != 16)
+		if ((i != 6 && i != 8) || counter != 16)
 			return (-1);
 	}
 	return (1);

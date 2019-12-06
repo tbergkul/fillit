@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 10:57:16 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/11/18 13:13:25 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/06 11:09:30 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-# define BUFF_SIZE 675
+# define BUFF_SIZE 546
 
 typedef struct		s_list
 {
@@ -26,8 +26,6 @@ typedef struct		s_list
 }					t_list;
 
 void				*ft_memset_newline(void *b, int c, size_t len);
-
-int					get_next_line(const int fd, char **line);
 
 int					ft_count_words(char *s, char c);
 

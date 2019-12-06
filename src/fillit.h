@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 13:31:04 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/12/03 18:12:47 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/06 10:57:25 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,20 @@ typedef struct	s_tetris
 	char		***array;
 	int			x;
 	int			y;
+	int			amount;
 }				t_tetris;
 
-int				check_overlap2(t_map *map, t_tetris *block, int t);//change prototype
-
-void			place_block(t_map *map, t_tetris *block, int t, int path);
+void			free_tetris(t_tetris *block);//remove
 
 int				inside_solution_y(t_map *map, t_tetris *block, int t);
 
 int				inside_solution_x(t_map *map, t_tetris *block, int t);
+
+void			free_stuff(t_map *map, t_tetris *block);
+
+int				check_if_fits(t_map *map, t_tetris *block, int t);
+
+void			place_block(t_map *map, t_tetris *block, int t, int path);
 
 int				fill_array(t_tetris *block);
 

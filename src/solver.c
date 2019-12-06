@@ -6,25 +6,28 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:22:42 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/12/03 18:10:44 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/06 13:59:18 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	solve_solution(t_map *map, t_tetris *block, int size, int t)
+/*
+**	system("clear");
+**	print_map(map, map->size);
+**	usleep(100000);
+**	system("clear");
+*/
+
+int	solve_solution(t_map *map, t_tetris *block, int t)
 {
-	/*system("clear");
-	print_map(map, map->size);
-	usleep(10000);
-	system("clear");*/
 	int	x;
 	int	y;
 
-	y = 0;
 	if (!block->array[t])
 		return (1);
-	while (map->solution[y])
+	y = -1;
+	while (map->solution[++y])
 	{
 		x = -1;
 		while (map->solution[y][++x])
@@ -32,16 +35,15 @@ int	solve_solution(t_map *map, t_tetris *block, int size, int t)
 			{
 				block->x = x;
 				block->y = y;
-				if (check_overlap2(map, block, t))
+				if (check_if_fits(map, block, t))
 				{
 					place_block(map, block, t, 'p');
-					if (solve_solution(map, block, size, ++t))
+					if (solve_solution(map, block, ++t))
 						return (1);
 					else
 						place_block(map, block, --t, 'd');
 				}
 			}
-		y++;
 	}
 	return (0);
 }
@@ -51,7 +53,7 @@ int	amount_tetriminos(t_tetris *block)
 	int	x;
 
 	x = 0;
-	while (block->tetris[x])
+	while (block->array[x])
 		x++;
 	return (x);
 }
@@ -73,13 +75,16 @@ int	solver(t_tetris *block)
 	int		t;
 
 	if (!(map = (t_map *)malloc(sizeof(t_map))))
-		return (-1);
+		return (0);
 	size = min_map(amount_tetriminos(block) * 4);
 	if (!(create_map(map, size)))
-		return (-1);
+	{
+		ft_memdel((void **)(&map));
+		return (0);
+	}
 	map->size = size;
 	t = 0;
-	while (!solve_solution(map, block, map->size, t))
+	while (!solve_solution(map, block, t))
 	{
 		free_map(map, map->size);
 		map->size++;
@@ -88,5 +93,6 @@ int	solver(t_tetris *block)
 	}
 	print_map(map, map->size);
 	free_map(map, map->size);
+	free_stuff(map, block);
 	return (1);
 }

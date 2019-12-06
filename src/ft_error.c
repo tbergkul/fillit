@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 11:50:37 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/11/26 13:04:12 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/05 13:54:47 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 int	ft_error(void)
 {
 	ft_putendl("error");
-	return (-1);
+	exit(-1);
 }

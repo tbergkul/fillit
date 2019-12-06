@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:32:58 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/12/03 16:36:08 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/06 11:20:24 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,27 @@ void	amount_up(char *tetrimino, int y, int *temp)
 		tetrimino[y] = '.';
 		*temp = 15;
 	}
-	if (tetrimino[y - 10] == '.' && (*temp == 10 || *temp == 0) && y >= 10)
+	else if (tetrimino[y - 10] == '.' && (*temp == 10 || *temp == 0) && y >= 10)
 	{
 		tetrimino[y - 10] = '#';
 		tetrimino[y] = '.';
 		*temp = 10;
 	}
-	if (tetrimino[y - 5] == '.' && (*temp == 5 || *temp == 0) && y >= 5)
+	else if (tetrimino[y - 5] == '.' && (*temp == 5 || *temp == 0) && y >= 5)
 	{
 		tetrimino[y - 5] = '#';
 		tetrimino[y] = '.';
 		*temp = 5;
 	}
+	else
+		*temp = 1;
 }
 
 void	stack_up(t_tetris *block)
 {
-	int			x;
-	int			y;
-	int			temp;
+	int	x;
+	int	y;
+	int	temp;
 
 	x = -1;
 	while (block->tetris[++x])
@@ -82,10 +84,8 @@ void	stack_up(t_tetris *block)
 		y = -1;
 		temp = 0;
 		while (block->tetris[x][++y])
-		{
 			if (block->tetris[x][y] == '#')
 				amount_up(block->tetris[x], y, &temp);
-		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 13:31:04 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/12/06 10:57:25 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/09 16:08:02 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../libft/libft.h"
 # include <fcntl.h>
-# include <stdio.h>//remove this when done
 
 typedef struct	s_map
 {
@@ -32,7 +31,7 @@ typedef struct	s_tetris
 	int			amount;
 }				t_tetris;
 
-void			free_tetris(t_tetris *block);//remove
+void			free_tetris(t_tetris *block);
 
 int				inside_solution_y(t_map *map, t_tetris *block, int t);
 

@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 11:55:21 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/12/06 11:13:11 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/09 16:07:44 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int		split_input(t_tetris *block, char *input)
 				return (0);
 		}
 	}
+	free(block->tetris[x]);
 	block->tetris[x] = NULL;
 	return (1);
 }

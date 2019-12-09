@@ -6,18 +6,11 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 11:44:44 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/12/06 13:59:27 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/09 16:07:57 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-/*
-**	leaks
-**	push binary
-**	check makefile rules
-**	ac != 2
-*/
 
 int		main(int ac, char **av)
 {
@@ -34,10 +27,5 @@ int		main(int ac, char **av)
 		return (ft_error());
 	if (!(solver(block)))
 		return (ft_error());
-	int y = 1;
-	while (y)
-	{
-		y = 1;
-	}
 	return (0);
 }

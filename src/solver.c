@@ -6,18 +6,11 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:22:42 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/12/06 13:59:18 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/09 16:09:04 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-/*
-**	system("clear");
-**	print_map(map, map->size);
-**	usleep(100000);
-**	system("clear");
-*/
 
 int	solve_solution(t_map *map, t_tetris *block, int t)
 {
@@ -71,18 +64,16 @@ int	min_map(int hashtags)
 int	solver(t_tetris *block)
 {
 	t_map	*map;
-	int		size;
 	int		t;
 
 	if (!(map = (t_map *)malloc(sizeof(t_map))))
 		return (0);
-	size = min_map(amount_tetriminos(block) * 4);
-	if (!(create_map(map, size)))
+	map->size = min_map(amount_tetriminos(block) * 4);
+	if (!(create_map(map, map->size)))
 	{
 		ft_memdel((void **)(&map));
 		return (0);
 	}
-	map->size = size;
 	t = 0;
 	while (!solve_solution(map, block, t))
 	{

@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:48:18 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/12/05 11:17:11 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/09 10:56:18 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	delete_block(t_map *map, int t)
 }
 
 /*
-**	The function place_block_three finds the first letter in the
+**	The function place_block_two finds the first letter in the
 **	array and places it in the solution.
 */
 
-int		place_block_three(t_map *map, t_tetris *block, int t, int *first_x)
+int		place_block_two(t_map *map, t_tetris *block, int t, int *first_x)
 {
 	int	x;
 
@@ -68,7 +68,7 @@ void	place_block(t_map *map, t_tetris *block, int t, int path)
 	if (path == 'p')
 	{
 		first_x = 0;
-		x = place_block_three(map, block, t, &first_x);
+		x = place_block_two(map, block, t, &first_x);
 		y = -1;
 		while (block->array[t][++y])
 		{

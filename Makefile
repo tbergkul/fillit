@@ -6,7 +6,7 @@
 #    By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/03 16:11:53 by khakala           #+#    #+#              #
-#    Updated: 2019/12/05 13:55:31 by tbergkul         ###   ########.fr        #
+#    Updated: 2019/12/09 16:15:28 by tbergkul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = libft/libft.a src/check_solution.c src/create_map.c src/fill_array.c src/
 
 OBJ = $(SRC:.c=.o)
 
-CCFL = gcc -g -Wall -Wextra -Werror
+CCFL = gcc -Wall -Wextra -Werror
 
 LIBFT = libft/
 
@@ -25,6 +25,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make -C $(LIBFT)
 	$(CCFL) -o $(NAME) $(OBJ) $(SRCS)
+	rm -rf fillit.dSYM
 
 clean:
 	/bin/rm -f $(OBJ)

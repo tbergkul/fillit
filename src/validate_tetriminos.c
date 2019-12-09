@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:34:06 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/12/05 11:17:11 by tbergkul         ###   ########.fr       */
+/*   Updated: 2019/12/09 16:07:32 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int	check_neighbours(char *tetris, int y, int letter)
 		i++;
 	if (newline == 1)
 		newline = 0;
-	if (tetris[y - 1] == '\n')
+	if (tetris[y - 1] == '\n' && y - 1 >= 0)
 		newline = 1;
-	if (tetris[y - 1 - newline] == letter)
+	if (tetris[y - 1 - newline] == letter && y - 1 - newline >= 0)
 		i++;
-	if (tetris[y - 5] == letter)
+	if (tetris[y - 5] == letter && y - 5 >= 0)
 		i++;
-	if (tetris[y + 5] == letter)
+	if (tetris[y + 5] == letter && y + 5 <= 19)
 		i++;
 	return (i);
 }

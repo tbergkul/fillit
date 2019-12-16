@@ -6,7 +6,7 @@
 #    By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/03 16:11:53 by khakala           #+#    #+#              #
-#    Updated: 2019/12/09 16:15:28 by tbergkul         ###   ########.fr        #
+#    Updated: 2019/12/13 15:49:55 by tbergkul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make -C $(LIBFT)
 	$(CCFL) -o $(NAME) $(OBJ) $(SRCS)
-	rm -rf fillit.dSYM
 
 clean:
 	/bin/rm -f $(OBJ)
